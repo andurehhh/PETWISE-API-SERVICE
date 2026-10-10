@@ -1,4 +1,4 @@
-﻿using PetWise.Domain.Entities;
+using PetWise.Domain.Entities;
 using PetWise_Infrastructure.Persistence.Models;
 using PetWise_Application.Common.Interfaces;
 using System;
@@ -61,7 +61,9 @@ namespace PetWise_Infrastructure.Repositories
                 ImageUrl = model.image_url,
                 Nickname = model.nickname,
                 CreatedAt = model.created_at,
-                HasCompletedSetup = model.has_completed_setup
+                HasCompletedSetup = model.has_completed_setup,
+                ContactNumber = model.contact_number,
+                Address = model.address
             };
         }
 
@@ -76,7 +78,9 @@ namespace PetWise_Infrastructure.Repositories
                 image_url = user.ImageUrl,
                 nickname = user.Nickname,
                 created_at = user.CreatedAt,
-                has_completed_setup = user.HasCompletedSetup
+                has_completed_setup = user.HasCompletedSetup,
+                contact_number = user.ContactNumber,
+                address = user.Address
             };
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace PetWise_API.Contracts.User
+namespace PetWise_API.Contracts.User
 {
     public class UserResponse
     {
@@ -14,5 +14,7 @@
         public string image_url { get; set; }
         public DateTime created_at { get; set; }
         public bool has_completed_setup { get; set; }
+        public string? contact_number { get; set; }
+        public string? address { get; set; }
     }
 }
