@@ -1,4 +1,4 @@
-﻿namespace PetWise_API.Contracts.User
+namespace PetWise_API.Contracts.User
 {
     public class CreateUserRequest
     {
@@ -13,5 +13,7 @@
         public string nickname { get; set; }
 
         public string password { get; set; }
+        public string? contact_number { get; set; }
+        public string? address { get; set; }
     }
 }

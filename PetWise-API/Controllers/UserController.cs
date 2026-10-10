@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetWise_Application.Common.Interfaces;
@@ -49,7 +49,9 @@ public class UserController : ControllerBase
                 image_url = user.ImageUrl,
                 nickname = user.Nickname,
                 created_at = user.CreatedAt,
-                has_completed_setup = user.HasCompletedSetup
+                has_completed_setup = user.HasCompletedSetup,
+                contact_number = user.ContactNumber,
+                address = user.Address
             });
         }
         catch (Exception ex)
@@ -79,7 +81,9 @@ public class UserController : ControllerBase
             string.IsNullOrWhiteSpace(request.last_name) &&
             string.IsNullOrWhiteSpace(request.nickname) &&
             string.IsNullOrWhiteSpace(request.image_url) &&
-            request.has_completed_setup == null)
+            request.has_completed_setup == null &&
+            string.IsNullOrWhiteSpace(request.contact_number) &&
+            string.IsNullOrWhiteSpace(request.address))
         {
             return UnprocessableEntity(new { message = "At least one field must be provided to update." });
         }
@@ -106,6 +110,12 @@ public class UserController : ControllerBase
             if (request.has_completed_setup.HasValue)
                 existingUser.HasCompletedSetup = request.has_completed_setup.Value;
 
+            if (!string.IsNullOrEmpty(request.contact_number))
+                existingUser.ContactNumber = request.contact_number;
+
+            if (!string.IsNullOrEmpty(request.address))
+                existingUser.Address = request.address;
+
             var updatedUser = await _userRepository.UpdateAsync(existingUser, cancellationToken);
 
             if (updatedUser == null)
@@ -120,7 +130,9 @@ public class UserController : ControllerBase
                 email = updatedUser.Email,
                 image_url = updatedUser.ImageUrl,
                 created_at = updatedUser.CreatedAt,
-                has_completed_setup = updatedUser.HasCompletedSetup
+                has_completed_setup = updatedUser.HasCompletedSetup,
+                contact_number = updatedUser.ContactNumber,
+                address = updatedUser.Address
             });
         }
         catch (Exception ex)
