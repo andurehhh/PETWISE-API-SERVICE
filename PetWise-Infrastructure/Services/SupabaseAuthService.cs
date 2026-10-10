@@ -74,11 +74,11 @@ namespace PetWise_Infrastructure.Services
             }
         }
 
-        public async Task SendPasswordResetEmailAsync(string email, CancellationToken cancellationToken = default)
+        public async Task<bool> SendPasswordResetEmailAsync(string email, CancellationToken cancellationToken = default)
         {
             try
             {
-                await _client.Auth.ResetPasswordForEmail(email);
+                return await _client.Auth.ResetPasswordForEmail(email);
             }
             catch (Supabase.Gotrue.Exceptions.GotrueException ex) when (ex.Message.Contains("rate limit") || ex.Message.Contains("too many"))
             {
@@ -86,7 +86,7 @@ namespace PetWise_Infrastructure.Services
             }
             catch
             {
-                
+                return false;
             }
         }
 

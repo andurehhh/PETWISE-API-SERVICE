@@ -1,4 +1,4 @@
-﻿using Postgrest.Attributes;
+using Postgrest.Attributes;
 using Postgrest.Models;
 using System;
 using System.Collections.Generic;
@@ -32,5 +32,11 @@ namespace PetWise_Infrastructure.Persistence.Models
 
         [Column("has_completed_setup")]
         public bool has_completed_setup { get; set; }
+
+        [Column("contact_number")]
+        public string? contact_number { get; set; }
+
+        [Column("address")]
+        public string? address { get; set; }
     }
 }

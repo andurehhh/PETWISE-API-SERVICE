@@ -1,4 +1,4 @@
-﻿namespace PetWise.Domain.Entities;
+namespace PetWise.Domain.Entities;
 
 public class User
 {
@@ -10,4 +10,6 @@ public class User
     public string? Nickname { get; set; }
     public DateTime CreatedAt { get; set; }
     public bool HasCompletedSetup { get; set; }
+    public string? ContactNumber { get; set; }
+    public string? Address { get; set; }
 }
